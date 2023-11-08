@@ -1,3 +1,10 @@
 #!/bin/bash
 
-ls $1 | awk -v folder=$1 '! /dbg/ {print folder"/"$0}' | dpkg -i 
+
+mkdir test
+cd test
+svn checkout https://github.com/iptsp/anchor-kernels/$1
+
+ls | awk -v '! /dbg/ {print $1"/"$0}' | dpkg -i 
+
+rm -rf test
